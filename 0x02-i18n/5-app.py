@@ -12,6 +12,7 @@ from typing import Union
 app = Flask(__name__)
 babel = Babel(app)
 
+
 """ Route module for the API - Mock logging in"""
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -20,15 +21,18 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 class Config(object):
     """ Setup - Babel configuration """
     LANGUAGES = ['en', 'fr']
-    #Setting Default for local and Timezone
+    # Setting Default for local and Timezone
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
-#Setting up app configuration
+
+# Setting up app configuration
 app.config.from_object(Config)
+
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index() -> str:
@@ -41,7 +45,6 @@ def index() -> str:
 @babel.localeselector
 def get_locale() -> str:
     """ Determines best match for supported languages """
-    # check if there is a locale parameter/query string
     if request.args.get('locale'):
         locale = request.args.get('locale')
         if locale in app.config['LANGUAGES']:
