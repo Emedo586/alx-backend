@@ -19,14 +19,16 @@ users = {
 app = Flask(__name__)
 babel = Babel(app)
 
+
 class Config(object):
     """ Setup - Babel configuration """
     LANGUAGES = ['en', 'fr']
-    #Setting Default for local and Timezone
+    # Setting Default for local and Timezone
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
-#Setting up app configuration
+
+# Setting up app configuration
 app.config.from_object(Config)
 
 
