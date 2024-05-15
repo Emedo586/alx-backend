@@ -10,20 +10,23 @@ from flask_babel import lazy_gettext as _l
 app = Flask(__name__)
 babel = Babel(app)
 
+
 class Config(object):
     """ Setup - Babel configuration """
     LANGUAGES = ['en', 'fr']
-    #Setting Default for local and Timezone
+    # Setting Default for local and Timezone
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
-#Setting up app configuration
+
+# Setting up app configuration
 app.config.from_object(Config)
 
 
 @app.route('/')
 def index():
-    return  render_template('3-index.html')
+    return render_template('3-index.html')
+
 
 @babel.localeselector
 def get_locale() -> str:
@@ -33,4 +36,4 @@ def get_locale() -> str:
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="5000", debug = True)
+    app.run(host="0.0.0.0", port="5000")
